@@ -1,0 +1,148 @@
+@import "~frontend-scss-mixins/mixins";
+@import "../base/mixins";
+@import "../base/media-queries";
+
+.region-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999; // поверх всего
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(97, 76, 62, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); // для Safari
+
+    &--active {
+        display: flex;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        @include mobile-screen {
+            gap: 20px;
+        }
+    }
+
+    &__title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.2em;
+        letter-spacing: .4em;
+        text-transform: uppercase;
+        margin-top: 14px;
+    }
+
+    &__flags {
+        display: flex;
+        gap: 50px;
+        align-items: start;
+        @include mobile-screen {
+            flex-direction: column;
+            gap: 20px;
+            align-items: start;
+        }
+    }
+
+    &__flag {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+        text-decoration: none; // Убираем подчеркивание у тега <a>
+        color: #fff; // Задаем белый цвет для всего текста внутри
+
+        img {
+            display: block;
+            width: 250px;
+            height:  200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        @include mobile-screen {
+            flex-direction: row;
+            img {
+                width: 70px;
+                height:  100%;
+                max-height: 60px;
+                border-radius: 2px;
+            }
+        }
+
+        &--disabled {
+            opacity: 0.9;
+            cursor: not-allowed;
+            filter: grayscale(100%);
+
+            &:hover {
+                transform: none; // Отменяем увеличение при наведении на неактивный регион
+            }
+        }
+    }
+
+    // Обертка для текстов
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center; // По центру на десктопе
+        gap: 6px; // Отступ между страной и городом
+
+        @include mobile-screen {
+            align-items: flex-start; // Прижимаем влево на мобилках рядом с картинкой
+        }
+    }
+
+    &__name {
+        color: #fff;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.2em;
+        letter-spacing: .4em;
+        text-transform: uppercase;
+        text-align: center;
+
+        @include mobile-screen {
+            text-align: left;
+            font-size: 16px; // Чуть меньше на телефонах
+        }
+    }
+
+    // Стили для подтекста (города)
+    &__city {
+        color: rgba(255, 255, 255, 0.8); // Слегка приглушенный белый для контраста
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.4em;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        text-align: center;
+
+        small {
+            display: block; // Сбрасываем (coming soon) на новую строку
+            font-size: 11px;
+            text-transform: lowercase;
+            letter-spacing: normal;
+            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @include mobile-screen {
+            text-align: left;
+            font-size: 12px;
+        }
+    }
+}

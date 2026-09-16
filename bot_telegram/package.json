@@ -1,0 +1,17 @@
+{
+  "name": "bot-telegram-thefame",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "check": "node --check bot.js",
+    "test": "npm run check && node --test"
+  },
+  "author": "vedutenkonikita149@gmail.com",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "telegraf": "^4.16.3"
+  }
+}
